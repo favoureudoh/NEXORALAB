@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register — NexoraLab</title>
+  <link rel="stylesheet" href="/static/style.css"/>
+</head>
+<body>
+
+  <div class="auth-wrapper">
+    <div class="auth-card">
+
+      <a href="/" class="back-link">← Back to home</a>
+      <h2>Create your account</h2>
+      <p class="auth-sub">Already have one? <a href="/login">Sign in</a></p>
+
+      {% if error %}
+        <div class="error-banner">{{ error }}</div>
+      {% endif %}
+
+      <form method="POST" action="/register" id="registerForm">
+
+        <div class="form-row">
+          <div class="field">
+            <label>First Name</label>
+            <input type="text" name="first_name" placeholder="Alex" required/>
+          </div>
+          <div class="field">
+            <label>Last Name</label>
+            <input type="text" name="last_name" placeholder="Morgan" required/>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Email Address</label>
+          <input type="email" name="email" placeholder="you@example.com" required/>
+        </div>
+
+        <div class="field">
+          <label>Username</label>
+          <input type="text" name="username" placeholder="nexora_member" required/>
+        </div>
+
+        <div class="field">
+          <label>Password</label>
+          <div class="input-eye-wrap">
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Create a strong password"
+              required
+            />
+            <button type="button" class="eye-btn" onclick="toggleEye('password', 'eye1')">
+              <span id="eye1">👁</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Confirm Password</label>
+          <div class="input-eye-wrap">
+            <input
+              type="password"
+              name="confirm_password"
+              id="confirm_password"
+              placeholder="Repeat your password"
+              required
+            />
+            <button type="button" class="eye-btn" onclick="toggleEye('confirm_password', 'eye2')">
+              <span id="eye2">👁</span>
+            </button>
+          </div>
+          <!-- shows if passwords don't match -->
+          <div class="field-error" id="pw-error" style="display:none;">Passwords do not match</div>
+        </div>
+
+        <button type="submit" class="btn-primary full">Create Account</button>
+
+      </form>
+
+    </div>
+  </div>
+
+  <script src="/static/main.js"></script>
+
+  <script>
+    // ── Toggle password visibility
+    function toggleEye(inputId, iconId) {
+      const input = document.getElementById(inputId)
+      const icon  = document.getElementById(iconId)
+
+      if (input.type === 'password') {
+        input.type  = 'text'
+        icon.textContent = '🙈'
+      } else {
+        input.type  = 'password'
+        icon.textContent = '👁'
+      }
+    }
+
+    // ── Check passwords match before submitting
+    document.getElementById('registerForm').addEventListener('submit', function (e) {
+      const password        = document.getElementById('password').value
+      const confirmPassword = document.getElementById('confirm_password').value
+      const errorDiv        = document.getElementById('pw-error')
+
+      if (password !== confirmPassword) {
+        // Stop the form from submitting
+        e.preventDefault()
+        errorDiv.style.display = 'block'
+      } else {
+        errorDiv.style.display = 'none'
+      }
+    })
+  </script>
+
+</body>
+</html>

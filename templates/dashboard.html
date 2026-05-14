@@ -1,0 +1,88 @@
+<script src="/static/main.js"></script>
+</body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard — NexoraLab</title>
+  <link rel="stylesheet" href="/static/style.css"/>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">Nexora<span>Lab</span></div>
+    <div class="nav-links">
+      <span class="nav-user">@{{ username }}</span>
+      <a href="/logout" class="btn-nav">Sign Out</a>
+    </div>
+  </nav>
+
+  <div class="dashboard-wrapper">
+
+    <!-- Welcome Banner -->
+    <div class="welcome-banner">
+      <div>
+        <h2>Welcome back, {{ first_name }}! 👋</h2>
+        <p>You are signed in as <strong>{{ email }}</strong></p>
+      </div>
+      <div class="welcome-badge">Member</div>
+    </div>
+
+    <!-- Profile Card -->
+    <div class="dashboard-grid">
+
+      <div class="dash-card">
+        <h3>Your Profile</h3>
+        <div class="profile-row">
+          <div class="profile-avatar">
+            <!-- Shows first letter of their first name -->
+            {{ first_name[0] | upper }}
+          </div>
+          <div class="profile-info">
+            <div class="profile-name">{{ first_name }} {{ last_name }}</div>
+            <div class="profile-username">@{{ username }}</div>
+            <div class="profile-email">{{ email }}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dash-card">
+        <h3>Account Details</h3>
+        <div class="detail-row">
+          <span class="detail-label">Full Name</span>
+          <span class="detail-val">{{ first_name }} {{ last_name }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Username</span>
+          <span class="detail-val">@{{ username }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Email</span>
+          <span class="detail-val">{{ email }}</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Member Since</span>
+          <span class="detail-val">{{ joined_at.strftime('%B %d, %Y') }}</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Announcements -->
+    <div class="dash-card full-width">
+      <h3>📣 Announcements</h3>
+      <div class="announcement">
+        <div class="ann-date">May 8, 2025</div>
+        <div class="ann-text">Welcome to NexoraLab! Your account is active and ready. 🎉</div>
+      </div>
+      <div class="announcement">
+        <div class="ann-date">May 7, 2025</div>
+        <div class="ann-text">Community chat is coming soon. Stay tuned for updates.</div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

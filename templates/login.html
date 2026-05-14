@@ -1,0 +1,50 @@
+<script src="/static/main.js"></script>
+</body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign In — NexoraLab</title>
+  <link rel="stylesheet" href="/static/style.css"/>
+</head>
+<body>
+
+  <div class="auth-wrapper">
+    <div class="auth-card">
+
+      <a href="/" class="back-link">← Back to home</a>
+      <h2>Welcome back</h2>
+      <p class="auth-sub">New here? <a href="/register">Create an account</a></p>
+
+      <!-- Show success message after registration -->
+      {% if registered %}
+        <div class="success-banner">Account created! You can now sign in.</div>
+      {% endif %}
+
+      <!-- Show error if login failed -->
+      {% if error %}
+        <div class="error-banner">{{ error }}</div>
+      {% endif %}
+
+      <form method="POST" action="/login">
+
+        <div class="field">
+          <label>Email Address</label>
+          <input type="email" name="email" placeholder="you@example.com" required/>
+        </div>
+
+        <div class="field">
+          <label>Password</label>
+          <input type="password" name="password" placeholder="Your password" required/>
+        </div>
+
+        <button type="submit" class="btn-primary full">Sign In</button>
+
+      </form>
+
+    </div>
+  </div>
+
+</body>
+</html>
