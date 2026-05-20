@@ -7,7 +7,7 @@ from sqlalchemy.orm import sessionmaker
 # Falls back to your local MySQL when running on your own computer
 DATABASE_URL = os.getenv(
     "DATABASE_URL",
-    "mysql+pymysql://root:yourpassword@localhost/nexoralab?charset=utf8mb4",
+    "mysql+pymysql://root:password@localhost/nexoralab?charset=utf8mb4",
 )
 
 # FreeSQLDatabase and Railway give mysql:// but SQLAlchemy needs mysql+pymysql://
